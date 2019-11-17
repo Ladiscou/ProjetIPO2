@@ -27,5 +27,14 @@ public class Environment implements IEnvironment {
 			this.line.add(ligne);
 		} 
 	}
+	
+	//Méthodes
+	public boolean isWinningPosition(Case c) {
+		//regarde si l'ordonnée est égal la hauteur-1
+		if (c.ord == game.height-1) {
+			return true;
+		}
+		return false;
+	}
 
 }
