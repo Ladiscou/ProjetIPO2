@@ -24,6 +24,14 @@ public class Car {
 	 }
 	
 	//TODO : ajout de methodes
+	public Case pos(){
+	 	return this.leftPosition;
+	}
+
+	public int size(){
+	 	return this.length;
+	}
+
     public void deplaceCar() {
     	if(this.leftToRight) {
     		this.leftPosition= new Case(this.leftPosition.absc + 1, this.leftPosition.ord);

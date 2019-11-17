@@ -1,6 +1,7 @@
 package environment;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import gameCommons.Game;
 import gameCommons.IEnvironment;
@@ -36,5 +37,22 @@ public class Environment implements IEnvironment {
 		}
 		return false;
 	}
+
+    public boolean isSafe(Case c){
+        Lane here = this.line.get(c.ord);
+        Iterator<Car> iter = here.rvCar().iterator();
+        while(iter.hasNext()){
+            Car vroom = iter.next();
+            int distance = c.absc - vroom.pos().absc;
+            if(distance >= 0) {
+                if (vroom.size() > distance) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
 
 }

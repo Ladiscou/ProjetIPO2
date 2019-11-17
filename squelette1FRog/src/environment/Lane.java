@@ -49,6 +49,10 @@ public class Lane {
 
 	}
 
+    public ArrayList<Car> rvCar(){
+	    return this.cars;
+    }
+
 	// TODO : ajout de methodes
 
 	/*
