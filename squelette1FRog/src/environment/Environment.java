@@ -10,8 +10,8 @@ public class Environment implements IEnvironment {
 	private ArrayList<Lane> line = new ArrayList<>();
 	private Game game;
 
-	//Construteurs
-	public Environment(Lane ligne) {
+	public Environment(Game game) {
+		this.game = game;
 		boolean sens;
 		for (int i = 0; i < game.height; i ++) {
 			//Crée un nb aléatoire entre 0 et 1 -> met false ou true pour connaitre le sens de la ligne
@@ -22,7 +22,7 @@ public class Environment implements IEnvironment {
 				sens  = false;
 			}
 			//crée une ligne
-			ligne = new Lane (game, i, sens, game.defaultDensity);
+			Lane ligne = new Lane (game, i, sens, game.defaultDensity);
 			//add une ligne ds Array List. addLane
 			this.line.add(ligne);
 		} 
