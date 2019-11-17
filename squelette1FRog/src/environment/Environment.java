@@ -23,7 +23,7 @@ public class Environment implements IEnvironment {
 				sens  = false;
 			}
 			//crée une ligne
-			Lane ligne = new Lane (game, i, sens, game.defaultDensity);
+			Lane ligne = new Lane (game, i, sens, game.defaultDensity, this);
 			//add une ligne ds Array List. addLane
 			this.line.add(ligne);
 		} 

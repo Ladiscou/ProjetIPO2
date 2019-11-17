@@ -40,6 +40,11 @@ public class Lane {
 			this.tic = this.speed;
 			}
 		this.mayAddCar();
+		Iterator<Car> iter2 = cars.iterator();
+		while(iter2.hasNext()){
+			Car vroum = iter2.next();
+			vroum.affichage();
+		}
 		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
 		// d'horloge" �gal � leur vitesse
 		// Notez que cette m�thode est appel�e � chaque tic d'horloge

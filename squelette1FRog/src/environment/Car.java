@@ -40,6 +40,10 @@ public class Car {
     		this.leftPosition= new Case(this.leftPosition.absc - 1, this.leftPosition.ord);
     	}
     }
+
+    void affichage(){
+	 	this.addToGraphics();
+	}
 	
 	
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
