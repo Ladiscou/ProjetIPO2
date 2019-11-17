@@ -53,6 +53,12 @@ public class Environment implements IEnvironment {
         return true;
     }
 
-
+    public void update() {
+		Iterator<Lane> iter = line.iterator();
+		while(iter.hasNext()){
+			Lane lg = iter.next();
+			lg.update();
+		}
+	}
 
 }
