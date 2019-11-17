@@ -1,6 +1,7 @@
 package environment;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import gameCommons.Game;
 
@@ -11,6 +12,7 @@ public class Lane {
 	private ArrayList<Car> cars = new ArrayList<>();
 	private boolean leftToRight;
 	private double density;
+	private int tic;
 
 	//Constructeur(s)
 	
@@ -21,13 +23,21 @@ public class Lane {
 		this.speed = alea;
 		this.leftToRight = sens;
 		this.density = density;
+		this.tic = this.speed;
 		
 	}
 
 	public void update() {
-
-		// TODO
-
+		this.tic -= 1;
+		if(this.tic == 0){
+			Iterator<Car> iter = cars.iterator();
+			while(iter.hasNext()){
+				Car vroum = iter.next();
+				vroum.deplaceCar();
+				}
+			this.tic = this.speed;
+			}
+		this.mayAddCar();
 		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
 		// d'horloge" �gal � leur vitesse
 		// Notez que cette m�thode est appel�e � chaque tic d'horloge
