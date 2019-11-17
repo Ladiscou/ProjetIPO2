@@ -13,10 +13,11 @@ public class Lane {
 	private boolean leftToRight;
 	private double density;
 	private int tic;
+	private Environment environment;
 
 	//Constructeur(s)
 	
-	public Lane (Game game, int ord, boolean sens, double density){
+	public Lane (Game game, int ord, boolean sens, double density, Environment environment){
 		this.game = game;
 		this.ord = ord;
 		int alea = 1 + (int)(Math.random() * ((3 - 1) + 1));
@@ -24,6 +25,7 @@ public class Lane {
 		this.leftToRight = sens;
 		this.density = density;
 		this.tic = this.speed;
+		this.environment = environment;
 		
 	}
 
@@ -64,7 +66,7 @@ public class Lane {
 	 * densit�, si la premi�re case de la voie est vide
 	 */
 	private void mayAddCar() {
-		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
+		if (this.environment.isSafe(getFirstCase()) && this.environment.isSafe(getBeforeFirstCase())) {
 			if (game.randomGen.nextDouble() < density) {
 				cars.add(new Car(game, getBeforeFirstCase(), leftToRight));
 			}
