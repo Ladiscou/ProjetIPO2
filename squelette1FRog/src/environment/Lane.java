@@ -20,7 +20,7 @@ public class Lane {
 	public Lane (Game game, int ord, boolean sens, double density, Environment environment){
 		this.game = game;
 		this.ord = ord;
-		int alea = 1 + (int)(Math.random() * ((3 - 1) + 1));
+		int alea = 2 + (int)(Math.random() * ((4 - 2) + 1));
 		this.speed = alea;
 		this.leftToRight = sens;
 		this.density = density;
@@ -60,6 +60,10 @@ public class Lane {
 	    return this.cars;
     }
 
+    public int pos(){
+		return this.ord;
+	}
+
 	// TODO : ajout de methodes
 
 	/*
@@ -87,7 +91,7 @@ public class Lane {
 
 	private Case getBeforeFirstCase() {
 		if (leftToRight) {
-			return new Case(-1, ord);
+			return new Case(-3, ord);
 		} else
 			return new Case(game.width, ord);
 	}

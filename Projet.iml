@@ -15,9 +15,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library">
-      <library name="givenEnvironment.jar">
+      <library>
         <CLASSES>
-          <root url="file:///home/tp-home008/csebe/L2/Info211/Projet/givenEnvironment.jar" />
+          <root url="jar://$MODULE_DIR$/givenEnvironment.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

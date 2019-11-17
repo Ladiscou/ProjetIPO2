@@ -55,10 +55,15 @@ public class Environment implements IEnvironment {
 
     public void update() {
 		Iterator<Lane> iter = line.iterator();
+		iter.next();
 		while(iter.hasNext()){
 			Lane lg = iter.next();
-			lg.update();
+			if(lg.pos() < (this.game.height - 1)){
+				lg.update();
+			}
 		}
 	}
+
+
 
 }

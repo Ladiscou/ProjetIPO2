@@ -41,7 +41,7 @@ public class Car {
     	}
     }
 
-    void affichage(){
+    public void affichage(){
 	 	this.addToGraphics();
 	}
 	
