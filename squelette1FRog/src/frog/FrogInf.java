@@ -39,11 +39,7 @@ public class FrogInf implements IFrog {
                     this.environment.majLineUp();
                 break;
             case down:
-
-                if(this.pos.ord > 0) {
-                    this.pos = new Case(this.pos.absc, this.pos.ord - 1);
-                }
-
+                this.environment.majLineDown();
                 break;
             case right:
                 if(this.pos.absc < game.width - 1) {

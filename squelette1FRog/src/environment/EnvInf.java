@@ -79,6 +79,24 @@ public class EnvInf implements IEnvironment {
 
     }
 
+    public void majLineDown(){
+        boolean sens;
+        int alea = 0 + (int) (Math.random() * ((1 - 0) + 1));
+        if(alea == 0){
+            sens = true;
+        }
+        else{
+            sens = false;
+        }
+        Lane down = new Lane(this.game, 0, sens, game.defaultDensity, this);
+        Iterator<Lane> iter = line.iterator();
+        while(iter.hasNext()){
+            iter.next().majOrd(true);
+        }
+        line.add(0, down);
+        line.remove(game.height-1);
+    }
+
 
     /**
      * fonction qui met a jour les ligne du jeux
