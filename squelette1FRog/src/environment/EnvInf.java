@@ -79,6 +79,9 @@ public class EnvInf implements IEnvironment {
 
     }
 
+    /**
+     *fonction qui met a jour les lignes de jeux quand la grenouille recule
+     */
     public void majLineDown(){
         boolean sens;
         int alea = 0 + (int) (Math.random() * ((1 - 0) + 1));
