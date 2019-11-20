@@ -10,7 +10,10 @@ public class Environment implements IEnvironment {
 		
 	private ArrayList<Lane> line = new ArrayList<>();
 	private Game game;
-
+	/**
+	 * constructeur
+	 * @param game
+	 */
 	public Environment(Game game) {
 		this.game = game;
 		boolean sens;
@@ -30,6 +33,12 @@ public class Environment implements IEnvironment {
 	}
 	
 	//Méthodes
+
+	/**
+	 * fonction booleene qui nous indique si la case C est un position de victoire
+	 * @param c
+	 * @return vrai si on la case est gagnante faux sinon
+	 */
 	public boolean isWinningPosition(Case c) {
 		//regarde si l'ordonnée est égal la hauteur-1
 		if (c.ord == game.height-1) {
@@ -38,7 +47,12 @@ public class Environment implements IEnvironment {
 		return false;
 	}
 
-    public boolean isSafe(Case c){
+	/**
+	 * fonction qui prend un case e parametre et indique si la case peux faire perdre la partie
+	 * @param c
+	 * @return vrai si etre sur la case provoque la perte de la partie faux sinon
+	 */
+	public boolean isSafe(Case c){
         Lane here = this.line.get(c.ord);
         Iterator<Car> iter = here.rvCar().iterator();
         while(iter.hasNext()){
@@ -53,7 +67,10 @@ public class Environment implements IEnvironment {
         return true;
     }
 
-    public void update() {
+	/**
+	 * fonction qui met a jour toutes les ligne du tableau de jeu
+	 */
+	public void update() {
 		Iterator<Lane> iter = line.iterator();
 		iter.next();
 		while(iter.hasNext()){

@@ -24,15 +24,28 @@ public class Car {
 	 }
 	
 	//TODO : ajout de methodes
+
+	/**
+	 * fonction getter
+	 * @return la case sur la quelle se trouve la partie la plus a gauche de la voiture
+	 */
 	public Case pos(){
 	 	return this.leftPosition;
 	}
 
+	/**
+	 * fonction getter
+	 * @return la taille de la voiture
+	 */
 	public int size(){
 	 	return this.length;
 	}
 
-    public void deplaceCar() {
+
+	/**
+	 * fonction qui gere le mouvement de la voiture
+	 */
+	public void deplaceCar() {
     	if(this.leftToRight) {
     		this.leftPosition= new Case(this.leftPosition.absc + 1, this.leftPosition.ord);
     	}
@@ -41,7 +54,18 @@ public class Car {
     	}
     }
 
-    public void affichage(){
+	/**
+	 * fonction qui permet de modifier l'ordonnée de la voiture, la remplace par y
+	 * @param y
+	 */
+	public void modifOrd(int y){
+	 	this.leftPosition = new Case(this.leftPosition.absc, y);
+	}
+
+	/**
+	 * envoie l'istruction d'afficher la voiture a la partie graphique
+	 */
+	public void affichage(){
 	 	this.addToGraphics();
 	}
 	

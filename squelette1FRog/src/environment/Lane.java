@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import gameCommons.Game;
+import gameCommons.IEnvironment;
 
 public class Lane {
 	private Game game;
@@ -13,11 +14,11 @@ public class Lane {
 	private boolean leftToRight;
 	private double density;
 	private int tic;
-	private Environment environment;
+	private IEnvironment environment;
 
 	//Constructeur(s)
 	
-	public Lane (Game game, int ord, boolean sens, double density, Environment environment){
+	public Lane (Game game, int ord, boolean sens, double density, IEnvironment environment){
 		this.game = game;
 		this.ord = ord;
 		int alea = 2 + (int)(Math.random() * ((4 - 2) + 1));
@@ -29,6 +30,46 @@ public class Lane {
 		
 	}
 
+
+
+	// TODO : ajout de methodes
+
+	/**
+	 * fonction qui met a jour l'ordonnée des voitures en fonction de l'ordonnée de la ligne
+	 */
+	public void majCars(){
+		Iterator<Car> iter = cars.iterator();
+		while(iter.hasNext()){
+			iter.next().modifOrd(this.ord);
+		}
+	}
+
+	/**
+	 * fonction qui augmente de 1 l'ordonnée de la ligne si sens est true et diminue sinon
+	 * met aussi a jour l'ordonnée des voitures avec
+	 * @param sens
+	 */
+	public void majOrd(boolean sens){
+		if(sens){
+			this.ord ++;
+			majCars();
+		}
+		else{
+			this.ord --;
+			majCars();
+		}
+	}
+
+
+	// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
+	// d'horloge" �gal � leur vitesse
+	// Notez que cette m�thode est appel�e � chaque tic d'horloge
+
+	// Les voitures doivent etre ajoutes a l interface graphique meme quand
+	// elle ne bougent pas
+
+	// A chaque tic d'horloge, une voiture peut �tre ajout�e
+
 	public void update() {
 		this.tic -= 1;
 		if(this.tic == 0){
@@ -36,35 +77,33 @@ public class Lane {
 			while(iter.hasNext()){
 				Car vroum = iter.next();
 				vroum.deplaceCar();
-				}
-			this.tic = this.speed;
 			}
+			this.tic = this.speed;
+		}
 		this.mayAddCar();
 		Iterator<Car> iter2 = cars.iterator();
 		while(iter2.hasNext()){
 			Car vroum = iter2.next();
 			vroum.affichage();
 		}
-		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
-		// d'horloge" �gal � leur vitesse
-		// Notez que cette m�thode est appel�e � chaque tic d'horloge
-
-		// Les voitures doivent etre ajoutes a l interface graphique meme quand
-		// elle ne bougent pas
-
-		// A chaque tic d'horloge, une voiture peut �tre ajout�e
-
 	}
 
-    public ArrayList<Car> rvCar(){
-	    return this.cars;
-    }
+	/**
+	 * fonction getter
+	 * @return le tabeau de voiture de la ligne
+	 */
+	public ArrayList<Car> rvCar(){
+		return this.cars;
+	}
 
-    public int pos(){
+
+	/**
+	 * fonction getter
+	 * @return l'ordonnée associée a la ligne
+	 */
+	public int pos(){
 		return this.ord;
 	}
-
-	// TODO : ajout de methodes
 
 	/*
 	 * Fourni : mayAddCar(), getFirstCase() et getBeforeFirstCase() 
