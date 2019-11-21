@@ -31,10 +31,21 @@ public class Main {
 		IFroggerGraphics graphic = new FroggerGraphic(width, height);
 		//Cr�ation de la partie
 		Game game = new Game(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
-		//Cr�ation et liason de la grenouille
+		
+		//IEnvironment env = new GivenEnvironment(game);
+		
+		//Point2
+		//Creation et liaison de l'environnement
+		//IEnvironment env = new Environment(game);
+		//IFrog frog = new Frog(game);
+		
+		//Point3
+		//Creation et liaison de l'environnement
 		IEnvironment env = new EnvInf(game, depart);
-		game.setEnvironment(env);
 		IFrog frog = new FrogInf(game, (EnvInf) env, depart);
+		
+		//Creation et liason de la grenouille
+		game.setEnvironment(env);
 		game.setFrog(frog);
 		graphic.setFrog(frog);
 		//Cr�ation et liaison de l'environnement
