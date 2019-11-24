@@ -17,8 +17,10 @@ public class Game {
 	public final int height;
 	public final int minSpeedInTimerLoops;
 	public final double defaultDensity;
-
-	// Lien aux objets utilis�s
+	public long time;
+	public int gagne;
+	public int perdu;
+	// Lien aux objets utilises
 	private IEnvironment environment;
 	private IFrog frog;
 	private IFroggerGraphics graphic;
@@ -34,7 +36,7 @@ public class Game {
 	 * @param height
 	 *            hauteur en cases
 	 * @param minSpeedInTimerLoop
-	 *            Vitesse minimale, en nombre de tour de timer avant d�placement
+	 *            Vitesse minimale, en nombre de tour de timer avant deplacement
 	 * @param defaultDensity
 	 *            densite de voiture utilisee par defaut pour les routes
 	 */
@@ -45,12 +47,15 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
-		this.score = 0;
+		this.score =0;
 		this.realScore = 0;
+		this.time = System.currentTimeMillis();
+		this.gagne = 0;
+		this.perdu = 0;
 	}
 
 	/**
-	 * Lie l'objet frog � la partie
+	 * Lie l'objet frog a la partie
 	 * 
 	 * @param frog
 	 */
@@ -83,20 +88,20 @@ public class Game {
 		return this.realScore;
 	}
 
-    public void incrScore(boolean sens){
-	    if(sens){
-            this.score++;
-        }
-	    else{
-	        this.score--;
-        }
-        if(this.score > this.realScore){
-            this.realScore = this.score;
-        }
-    }
-
+	 public void incrScore(boolean sens){
+		    if(sens){
+	            this.score++;
+	        }
+		    else{
+		        this.score--;
+	        }
+	        if(this.score > this.realScore){
+	            this.realScore = this.score;
+	        }
+	    }
+	
 	/**
-	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel
+	 * Teste si la partie est perdue et lance un ecran de fin approprie si tel
 	 * est le cas
 	 * 
 	 * @return true si le partie est perdue
@@ -106,27 +111,33 @@ public class Game {
 		if(this.environment.isSafe(pos)) {
 		   return false;
 	    }
-		String scor = Integer.toString(this.score);
-		this.graphic.endGameScreen("perdue votre score est :" + scor);
+		if (this.perdu == 0) {
+			String scor = Integer.toString(this.score);
+			long tps = (long) ((System.currentTimeMillis()-this.time)*Math.pow(10, -3));
+			this.graphic.endGameScreen("Perdu votre score est : " + scor + "  + tps : " + tps + " s" );
+			this.perdu ++;
+		}
 		return true;
-		
 	}
 
 	/**
-	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel
+	 * Teste si la partie est gagnee et lance un ecran de fin approprie si tel
 	 * est le cas
 	 * 
-	 * @return true si la partie est gagn�e
+	 * @return true si la partie est gagne
 	 */
 	public boolean testWin() {
 		Case pos = this.frog.getPosition();
 		if(this.environment.isWinningPosition(pos)) {
-			this.graphic.endGameScreen("gagné");
+			if (this.gagne == 0) {
+				long tps = (long) ((System.currentTimeMillis()-this.time)*Math.pow(10, -3));
+				this.graphic.endGameScreen("Gagné en " + tps + " s" );
+				this.gagne ++;
+			}
 			return true;
 		}
 		return false;
 	}
-
 
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de
