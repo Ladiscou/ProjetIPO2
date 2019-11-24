@@ -10,7 +10,6 @@ import java.util.Iterator;
 public class EnvInf implements IEnvironment {
     private ArrayList<Lane> line = new ArrayList<>();
     private Game game;
-    public int score;
     private int depart;
 
    // constructeur
@@ -75,7 +74,7 @@ public class EnvInf implements IEnvironment {
 
         }
         line.add(up);
-        this.score++;
+        this.game.incrScore(true);
 
     }
 
@@ -98,6 +97,7 @@ public class EnvInf implements IEnvironment {
         }
         line.add(0, down);
         line.remove(game.height-1);
+        this.game.incrScore(false);
     }
 
 
@@ -106,7 +106,7 @@ public class EnvInf implements IEnvironment {
      */
     public void update() {
         Iterator<Lane> iter = line.iterator();
-        if(this.score == 0){
+        if(this.game.score() == 0){
             for(int i = 0; i <= this.depart; i++){
                 iter.next();
             }
@@ -116,9 +116,6 @@ public class EnvInf implements IEnvironment {
             if(lg.pos() < (this.game.height)){
                 lg.update();
             }
-        }
-        if(this.score%10 == 0){
-            System.out.println("vous avez atteint le score de :"+ this.score);
         }
     }
 }

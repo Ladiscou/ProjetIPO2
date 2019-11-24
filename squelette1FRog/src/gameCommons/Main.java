@@ -24,7 +24,7 @@ public class Main {
 		int height = 20;
 		int tempo = 100;
 		int minSpeedInTimerLoops = 3;
-		double defaultDensity = 0.02;
+		double defaultDensity = 0.05;
 		int depart = 2;
 		
 		//Cr�ation de l'interface graphique
@@ -33,8 +33,10 @@ public class Main {
 		Game game = new Game(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
 		//Cr�ation et liason de la grenouille
 		IEnvironment env = new EnvInf(game, depart);
+		//IEnvironment env = new Environment(game);
 		game.setEnvironment(env);
 		IFrog frog = new FrogInf(game, (EnvInf) env, depart);
+		//IFrog frog = new Frog(game);
 		game.setFrog(frog);
 		graphic.setFrog(frog);
 		//Cr�ation et liaison de l'environnement

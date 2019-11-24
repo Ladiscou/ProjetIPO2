@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.Random;
 
 import environment.Case;
+import environment.EnvInf;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 
@@ -21,6 +22,8 @@ public class Game {
 	private IEnvironment environment;
 	private IFrog frog;
 	private IFroggerGraphics graphic;
+	private int score;
+	private int realScore;
 
 	/**
 	 * 
@@ -42,6 +45,8 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
+		this.score = 0;
+		this.realScore = 0;
 	}
 
 	/**
@@ -71,6 +76,26 @@ public class Game {
 	}
 
 	/**
+	 * fonction getter
+	 * @return le score actuel
+	 */
+	public int score(){
+		return this.realScore;
+	}
+
+    public void incrScore(boolean sens){
+	    if(sens){
+            this.score++;
+        }
+	    else{
+	        this.score--;
+        }
+        if(this.score > this.realScore){
+            this.realScore = this.score;
+        }
+    }
+
+	/**
 	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel
 	 * est le cas
 	 * 
@@ -81,7 +106,8 @@ public class Game {
 		if(this.environment.isSafe(pos)) {
 		   return false;
 	    }
-		this.graphic.endGameScreen("perdue");
+		String scor = Integer.toString(this.score);
+		this.graphic.endGameScreen("perdue votre score est :" + scor);
 		return true;
 		
 	}
@@ -100,6 +126,7 @@ public class Game {
 		}
 		return false;
 	}
+
 
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de
